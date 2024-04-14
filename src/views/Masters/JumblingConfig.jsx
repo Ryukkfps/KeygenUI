@@ -39,7 +39,7 @@ const JumblingConfig = () => {
 
   const fetchConfigurations = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/api/PaperConfig`, { headers: { Authorization: `Bearer ${keygenUser?.token}` } });
+      const response = await axios.get(`${baseUrl}/api/ProgConfigs`, { headers: { Authorization: `Bearer ${keygenUser?.token}` } });
       setConfigurations(response.data);
       setFilteredConfigurations(response.data);
     } catch (error) {
@@ -48,7 +48,7 @@ const JumblingConfig = () => {
   };
 
   const [formData, setFormData] = useState({
-    programID: '', // Changed from null to empty string
+    progID: '', // Changed from null to empty string
     sets: 0,
     setOrder: '',
     masterName: '',
@@ -88,7 +88,7 @@ const JumblingConfig = () => {
 
       // Reset form data if submission was successful
       setFormData({
-        programID: '',
+        progID: '',
         sets: 0,
         setOrder: '',
         masterName: '',
@@ -156,8 +156,8 @@ const JumblingConfig = () => {
                       <Col key={config.id} >
                         <Card className='mt-2'>
                           <Card.Body>
-                            <strong>Master Name:</strong> {config.masterName} <br />
-                            <strong>Program Name:</strong> {programs.find((program) => program.programmeID === config.programID)?.programName} <br />
+                            {/* <strong>Master Name:</strong> {config.masterName} <br /> */}
+                            <strong>Program Name:</strong> {programs.find((program) => program.programmeID === config.progID)?.programmeName} <br />
                             <strong>Number of Questions:</strong> {config.numberofQuestions} <br />
                             <strong>Booklet Size:</strong> {config.bookletSize} <br />
                             <strong>Number of Jumbling Steps:</strong> {config.numberofJumblingSteps} <br />
@@ -196,7 +196,7 @@ const JumblingConfig = () => {
                       <Form.Control as="select" value={formData.programID} onChange={(e) => handleInputChange('programID', e.target.value)} required>
                         <option value="">Select a program</option>
                         {programs.map((program) => (
-                          <option key={program.programmeID} value={program.programmeID}>{program.programName}</option>
+                          <option key={program.programmeID} value={program.programmeID}>{program.programmeName}</option>
                         ))}
                       </Form.Control>
                     </Form.Group>

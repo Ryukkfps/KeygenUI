@@ -426,11 +426,14 @@ const FormComponent = ({ formSubmitted, setFormSubmitted }) => {
                     'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
                 }
             });
-            const responseData = await response.json();
+            // const responseData = await response.json();
+            const responseData = await response.data;
+            console.log(responseData)
+            let responsedata = JSON.stringify(responseData)
     
-            if (response.ok) {
+            if (responseData != null) {
                 console.log('File uploaded successfully!');
-                localStorage.setItem('apiResponse', responseData);
+                localStorage.setItem('apiResponse', responsedata);
                 setFormSubmitted(true);
                 setEditing(false);
             } else {

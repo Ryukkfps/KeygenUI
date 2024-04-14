@@ -66,7 +66,7 @@ const style = StyleSheet.create({
     },
 });
 
-const KeyPdf = ({ data, group, catchno }) => {
+const KeyPdf = ({ data=[], group='', catchno='' }) => {
     if (!data) {
         return null; // If data is null, return null to prevent rendering
     }
@@ -121,7 +121,14 @@ const KeyPdf = ({ data, group, catchno }) => {
 };
 
 KeyPdf.propTypes = {
-    data: PropTypes.array, 
+    data: PropTypes.arrayOf(
+        PropTypes.shape({
+          setID: PropTypes.string.isRequired,
+          pageNumber: PropTypes.number.isRequired,
+          questionNumber: PropTypes.number.isRequired,
+          answer: PropTypes.string.isRequired
+        })
+      ),
     group: PropTypes.string, 
     catchno: PropTypes.string, 
 };
