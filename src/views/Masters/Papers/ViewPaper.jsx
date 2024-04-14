@@ -273,8 +273,11 @@ const ViewPaper = () => {
   const [subjects, setSubjects] = useState([]);
   const [formDisabled, setFormDisabled] = useState(true);
   const [buttonText, setButtonText] = useState('Update');
+<<<<<<< HEAD
+=======
   const [gkbuttonText, setGkButtonText] = useState('');
   const navigate = useNavigate();
+>>>>>>> ba1a06862bad980b17445fa5572e34fba17c7fd4
 
   const handleChange = (name, value) => {
     setPaper({
@@ -350,16 +353,10 @@ const ViewPaper = () => {
 
   useEffect(() => {
     fetchPaper();
+    fetchPrograms();
+    fetchSubjects();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    if (paper) {
-      fetchPrograms();
-      fetchSubjects();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paper]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
